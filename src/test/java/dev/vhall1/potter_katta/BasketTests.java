@@ -33,4 +33,35 @@ public class BasketTests {
         }
     }
 
+    @Nested
+    @DisplayName("applies basic discounts when there are no repeated books and")
+    class NoRepeatDiscounts {
+        @Test
+        @DisplayName("two books are purchased")
+        void twoBooks() {
+            Basket basket = new Basket(new int[]{0, 1});
+            assertEquals(Basket.BOOK_VALUE_IN_PENCE * 2 * 0.95, basket.calculateTotal());
+        }
+
+        @Test
+        @DisplayName("three books are purchased")
+        void threeBooks() {
+            Basket basket = new Basket(new int[]{0, 2, 4});
+            assertEquals(Basket.BOOK_VALUE_IN_PENCE * 3 * 0.9, basket.calculateTotal());
+        }
+
+        @Test
+        @DisplayName("four books are purchased")
+        void fourBooks() {
+            Basket basket = new Basket(new int[]{0, 1, 2, 4});
+            assertEquals(Basket.BOOK_VALUE_IN_PENCE * 3 * 0.8, basket.calculateTotal());
+        }
+
+        @Test
+        @DisplayName("five books are purchased")
+        void fiveBooks() {
+            Basket basket = new Basket(new int[]{0, 1, 2, 3, 4});
+            assertEquals(Basket.BOOK_VALUE_IN_PENCE * 3 * 0.75, basket.calculateTotal());
+        }
+    }
 }
