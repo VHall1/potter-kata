@@ -34,7 +34,7 @@ public class BasketTests {
     }
 
     @Nested
-    @DisplayName("applies basic discounts when there are no repeated books and")
+    @DisplayName("discount is applied when there are no repeated books and")
     class NoRepeatDiscounts {
         @Test
         @DisplayName("two books are purchased")
@@ -62,6 +62,38 @@ public class BasketTests {
         void fiveBooks() {
             Basket basket = new Basket(new int[]{0, 1, 2, 3, 4});
             assertEquals(Basket.BOOK_VALUE_IN_PENCE * 5 * 0.75, basket.calculateTotal());
+        }
+    }
+
+    @Nested
+    @DisplayName("several discounts are applied when")
+    class RepeatDiscounts {
+        @Test
+        @DisplayName("two unique books are purchased plus one extra book")
+        void twoUniqueBooksPlusOne() {
+            Basket basket = new Basket(new int[]{0, 0, 1});
+            assertEquals(Basket.BOOK_VALUE_IN_PENCE + (Basket.BOOK_VALUE_IN_PENCE * 2 * 0.95), basket.calculateTotal());
+        }
+
+        @Test
+        @DisplayName("two unique books are purchased plus two unique books")
+        void twoUniqueBooksPlusTwo() {
+            Basket basket = new Basket(new int[]{0, 0, 1, 1});
+            assertEquals(2 * (Basket.BOOK_VALUE_IN_PENCE * 2 * 0.95), basket.calculateTotal());
+        }
+
+        @Test
+        @DisplayName("four unique books are purchased plus two unique books")
+        void fourUniqueBooksPlusTwo() {
+            Basket basket = new Basket(new int[]{0, 0, 1, 2, 2, 3});
+            assertEquals((Basket.BOOK_VALUE_IN_PENCE * 4 * 0.8) + (Basket.BOOK_VALUE_IN_PENCE * 2 * 0.95), basket.calculateTotal());
+        }
+
+        @Test
+        @DisplayName("five unique books are purchased plus one extra book")
+        void fiveUniqueBooksPlusOne() {
+            Basket basket = new Basket(new int[]{0, 1, 1, 2, 3, 4});
+            assertEquals(Basket.BOOK_VALUE_IN_PENCE + (Basket.BOOK_VALUE_IN_PENCE * 5 * 0.75), basket.calculateTotal());
         }
     }
 }
