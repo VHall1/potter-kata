@@ -54,14 +54,14 @@ public class BasketTests {
         @DisplayName("four books are purchased")
         void fourBooks() {
             Basket basket = new Basket(new int[]{0, 1, 2, 4});
-            assertEquals(Basket.BOOK_VALUE_IN_PENCE * 3 * 0.8, basket.calculateTotal());
+            assertEquals(Basket.BOOK_VALUE_IN_PENCE * 4 * 0.8, basket.calculateTotal());
         }
 
         @Test
         @DisplayName("five books are purchased")
         void fiveBooks() {
             Basket basket = new Basket(new int[]{0, 1, 2, 3, 4});
-            assertEquals(Basket.BOOK_VALUE_IN_PENCE * 3 * 0.75, basket.calculateTotal());
+            assertEquals(Basket.BOOK_VALUE_IN_PENCE * 5 * 0.75, basket.calculateTotal());
         }
     }
 }

@@ -1,5 +1,8 @@
 package dev.vhall1.potter_kata;
 
+
+import dev.vhall1.potter_kata.discount.DiscountFactory;
+
 public class Basket {
     private int[] books;
 
@@ -9,7 +12,7 @@ public class Basket {
         this.books = books;
     }
 
-    public int calculateTotal() {
-        return this.books.length * BOOK_VALUE_IN_PENCE;
+    public double calculateTotal() {
+        return this.books.length * BOOK_VALUE_IN_PENCE * DiscountFactory.calculateDiscount(this.books);
     }
 }
