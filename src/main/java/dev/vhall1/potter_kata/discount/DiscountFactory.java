@@ -1,7 +1,5 @@
 package dev.vhall1.potter_kata.discount;
 
-import java.util.List;
-
 public class DiscountFactory {
     public static final Class<? extends Discount>[] DISCOUNT_CLASSES = new Class[]{TwoBookDiscount.class, ThreeBookDiscount.class, FourBookDiscount.class, FiveBookDiscount.class};
 
