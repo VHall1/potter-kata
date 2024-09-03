@@ -1,11 +1,11 @@
 package dev.vhall1.potter_kata.discount;
 
-import java.util.List;
+import java.util.Arrays;
 
 public class FiveBookDiscount implements Discount {
-    public boolean isActive(List<Integer> books) {
-        var uniqueBooks = books.stream().distinct().toList();
-        return uniqueBooks.size() == 5;
+    public boolean isActive(int[] books) {
+        var uniqueBooks = Arrays.stream(books).distinct().toArray();
+        return uniqueBooks.length == 5;
     }
 
     public double discountMultiplier() {

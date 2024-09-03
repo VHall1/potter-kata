@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Basket {
-    private final List<Integer> books;
+    private final int[] books;
 
     public static final int BOOK_VALUE_IN_PENCE = 800;
 
-    public Basket(List<Integer> books) {
+    public Basket(int[] books) {
         this.books = books;
     }
 
@@ -19,7 +19,7 @@ public class Basket {
         var groupedBooks = this.groupBooks();
         double total = 0;
         for (var bookGroup : groupedBooks) {
-            var discount = DiscountFactory.calculateDiscount(bookGroup);
+            var discount = DiscountFactory.calculateDiscount(bookGroup.stream().mapToInt(i -> i).toArray());
             total += bookGroup.size() * BOOK_VALUE_IN_PENCE * discount;
         }
         return total;
